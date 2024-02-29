@@ -1,0 +1,60 @@
+plugins {
+    id 'java'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.apache.kafka:kafka-clients:3.4.0'
+    implementation 'org.slf4j:slf4j-api:2.0.5'
+    implementation 'org.slf4j:slf4j-simple:2.0.5'
+
+    implementation group: 'com.squareup.okhttp3', name: 'okhttp', version: '4.9.3'
+    implementation group: 'com.launchdarkly', name: 'okhttp-eventsource', version: '2.5.0'
+
+    // Jackson for JSON Parsing
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.15.1'
+
+    // Apache Commons CSV
+    implementation 'org.apache.commons:commons-csv:1.10.0'
+
+    implementation 'org.json:json:20210307'
+
+    // Spark dependecies
+    implementation 'org.apache.spark:spark-core_2.12:3.3.1'
+    implementation 'org.apache.spark:spark-streaming_2.12:3.3.1'
+    implementation 'org.apache.spark:spark-sql_2.12:3.3.1'
+
+    // Kafka dependency for Spark Streaming
+    implementation 'org.apache.spark:spark-streaming-kafka-0-10_2.12:3.3.2'
+
+    compileOnly 'org.projectlombok:lombok:1.18.8'
+    annotationProcessor 'org.projectlombok:lombok:1.18.8'
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.2'
+}
+
+//jar {
+//
+//    manifest {
+//        attributes(
+//                'Main-Class': 'org.example.KafkaSparkStreamingExample'
+//        )
+//    }
+//
+//    from configurations.compile.collect {it.isDirectory() ? it : zipTree(it)}
+//
+//    from {
+//        configurations.runtimeClasspath.findAll { it.name.endsWith('jar').collect(zipTree(it))}
+//    }
+//}
+
+test {
+    useJUnitPlatform()
+}
